@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Hussein Labib - Dental Excellence in Dubai</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .preloader-content {
+            text-align: center;
+        }
+        
+        .tooth-loader {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            margin: 0 auto 20px;
+        }
+        
+        .tooth-loader:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: var(--primary);
+            border-bottom-color: var(--primary);
+            animation: spin 1.5s linear infinite;
+        }
+        
+        .tooth-loader:after {
+            content: "🦷";
+            font-size: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--primary);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         
         /* CSS Variables */
         :root {
@@ -41,7 +94,6 @@
             line-height: 1.6;
             color: var(--text);
             overflow-x: hidden;
-            height: 100vh;
         }
 
         h1, h2, h3, h4 {
@@ -147,7 +199,6 @@
         .pattern-bg-2 {
             background-color: var(--white);
             background-image: 
-                
                 linear-gradient(90deg, rgba(26, 156, 183, 0.02) 2px, transparent 2px);
             background-size: 40px 40px;
         }
@@ -173,15 +224,16 @@
             z-index: 1000;
             transition: var(--transition);
             opacity: 0.8;
-            border-radius: 50px 0px 0px 50px;
             margin-top: 10px;
-            margin-left: 30px;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.7));
         }
 
         .navbar.scrolled {
             padding: 5px 0;
             background: rgba(255, 255, 255, 0.95);
+            margin-top: 0;
+            opacity: 1;
+            border-radius: 0;
         }
 
         .nav-container {
@@ -189,7 +241,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
-            margin-left: 60px;
         }
 
         .logo {
@@ -399,11 +450,12 @@
         .about-img {
             border-radius: 15px;
             background-image: url('https://img.freepik.com/premium-photo/smiling-doctor-assistant-with-crossed-hands-looking-camera-dental-clinic_549545-322.jpg');
-            
             height: 400px;
             width: auto;
             box-shadow: var(--shadow-lg);
             position: relative;
+            background-size: cover;
+            background-position: center;
         }
 
         .about-img::after {
@@ -724,40 +776,6 @@
             font-size: 0.9rem;
         }
         
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .treatments-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .treatments-header h2 {
-                font-size: 2.2rem;
-            }
-            
-            .treatments-header p {
-                font-size: 1.1rem;
-            }
-            
-            .treatments-grid {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .treatments-header h2 {
-                font-size: 1.8rem;
-            }
-            
-            .treatment-content {
-                padding: 20px;
-            }
-        }
-
         /* Testimonials Carousel */
         .testimonials {
             position: relative;
@@ -899,13 +917,10 @@
         }
 
         /* Contact Section */
-        
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
-            padding: 30px;
-            background-color: #2c3e50;
         }
 
         .contact-form {
@@ -1118,30 +1133,30 @@
             .about-content,
             .contact-container {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
 
             .map {
                 height: 400px;
+                order: -1;
             }
 
-            .stacked-cards {
-                height: 600px;
-            }
-
-            .stacked-card {
-                width: 300px;
+            .treatments-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             }
         }
 
         @media (max-width: 768px) {
             .navbar {
                 padding: 10px 0;
+                margin-top: 0;
+                border-radius: 0;
             }
 
             .nav-menu {
                 position: fixed;
                 top: 70px;
-                left: -200%;
+                left: -100%;
                 flex-direction: column;
                 background: var(--white);
                 width: 100%;
@@ -1194,20 +1209,27 @@
                 font-size: 2.5rem;
             }
 
-            .stacked-cards {
-                height: 700px;
-            }
-
-            .stacked-card {
-                width: 280px;
-            }
-
             .testimonial {
                 padding: 30px 20px;
             }
 
             .testimonial-text {
                 font-size: 1.1rem;
+            }
+
+            .treatments-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .treatments-header p {
+                font-size: 1.1rem;
+            }
+            
+            .treatments-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
 
@@ -1228,15 +1250,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .stacked-cards {
-                height: 800px;
-            }
-
-            .stacked-card {
-                width: 250px;
-                padding: 20px;
-            }
-
             .testimonial-author {
                 flex-direction: column;
                 text-align: center;
@@ -1245,787 +1258,574 @@
             .contact-form {
                 padding: 25px;
             }
+            
+            .treatments-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .treatment-content {
+                padding: 20px;
+            }
+            
+            .treatment-img {
+                height: 180px;
+            }
         }
-    
     </style>
-  </head>
-  <body>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="tooth-loader"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
-      <div class="container nav-container">
-        <a href="#" class="logo"
-          ><i class="fas fa-tooth"></i>Dr. Hussein Labib</a
-        >
-        <ul class="nav-menu">
-          <li class="nav-item">
-            <a href="#home" class="nav-link active">Home</a>
-          </li>
-          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-          <li class="nav-item">
-            <a href="#services" class="nav-link">Services</a>
-          </li>
-          <li class="nav-item">
-            <a href="#testimonials" class="nav-link">Testimonials</a>
-          </li>
-          <li class="nav-item">
-            <a href="#contact" class="nav-link">Contact</a>
-          </li>
-        </ul>
-        <div class="hamburger">
-          <i class="fas fa-bars"></i>
+        <div class="container nav-container">
+            <a href="#" class="logo"><i class="fas fa-tooth"></i>Dr. Hussein Labib</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-      </div>
     </nav>
 
     <!-- Hero Section with Slideshow -->
     <section id="home" class="hero">
-      <div class="hero-slideshow">
-        <div
-          class="slide active"
-          style="
-            background-image: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
-          "
-        ></div>
-        <div
-          class="slide"
-          style="
-            background-image: url('https://storage.googleapis.com/uxpilot-auth.appspot.com/0db0500d42-f37c97112dfc54a62c99.png');
-          "
-        ></div>
-        <div
-          class="slide"
-          style="
-            background-image: url('https://www.shutterstock.com/image-photo/smile-mirror-portrait-woman-dentist-600nw-2308651281.jpg');
-          "
-        ></div>
-        <div
-          class="slide"
-          style="
-            background-image: url('https://media.istockphoto.com/id/936887200/photo/woman-having-teeth-examined-at-dentists.jpg?s=612x612&w=0&k=20&c=9_X3m_A0s7xYoImvF3beHuW7oKTeXq8EYzFtbKBkaBI=');
-          "
-        ></div>
-      </div>
-      <div class="container hero-content">
-        <h1>Dental Excellence in Dubai</h1>
-        <p>
-          Experience world-class dental care with a personal touch for a
-          healthier, brighter smile.
-        </p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn">Book Appointment</a>
-          <a href="#services" class="btn btn-outline">Our Services</a>
+        <div class="hero-slideshow">
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80')"></div>
+            <div class="slide" style="background-image: url('https://storage.googleapis.com/uxpilot-auth.appspot.com/0db0500d42-f37c97112dfc54a62c99.png')"></div>
+            <div class="slide" style="background-image: url('https://www.shutterstock.com/image-photo/smile-mirror-portrait-woman-dentist-600nw-2308651281.jpg')"></div>
+            <div class="slide" style="background-image: url('https://media.istockphoto.com/id/936887200/photo/woman-having-teeth-examined-at-dentists.jpg?s=612x612&w=0&k=20&c=9_X3m_A0s7xYoImvF3beHuW7oKTeXq8EYzFtbKBkaBI=')"></div>
         </div>
-      </div>
-      <div class="hero-badge">
-        <i class="fas fa-chevron-down"></i>
-        <span>Scroll Down</span>
-      </div>
+        <div class="container hero-content">
+            <h1 data-aos="fade-down" data-aos-duration="1000">Dental Excellence in Dubai</h1>
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Experience world-class dental care with a personal touch for a healthier, brighter smile.</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <a href="#contact" class="btn">Book Appointment</a>
+                <a href="#services" class="btn btn-outline">Our Services</a>
+            </div>
+        </div>
+        <div class="hero-badge">
+            <i class="fas fa-chevron-down"></i>
+            <span>Scroll Down</span>
+        </div>
     </section>
 
     <!-- Stats Section -->
     <section class="stats">
-      <div class="container stats-container">
-        <div class="stat-item">
-          <div class="stat-number" data-count="15">0</div>
-          <div class="stat-text">Years Experience</div>
+        <div class="container stats-container">
+            <div class="stat-item" data-aos="fade-up" data-aos-duration="1000">
+                <div class="stat-number" data-count="5000">0</div>
+                <div class="stat-text">Happy Patients</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="stat-number" data-count="15">0</div>
+                <div class="stat-text">Years Experience</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="stat-number" data-count="27">0</div>
+                <div class="stat-text">Awards</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                <div class="stat-number" data-count="100">0</div>
+                <div class="stat-text">Procedures</div>
+            </div>
         </div>
-        <div class="stat-item">
-          <div class="stat-number" data-count="2500">0</div>
-          <div class="stat-text">Happy Patients</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-count="12">0</div>
-          <div class="stat-text">Expert Staff</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" data-count="98">0</div>
-          <div class="stat-text">Success Rate</div>
-        </div>
-      </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section about pattern-bg-1">
-      <div class="container">
-        <div class="section-title">
-          <h2>About Dr. Hussein Labib</h2>
-          <p>Learn about our esteemed dentist and his journey in dental care</p>
-        </div>
-        <div class="about-content">
-          <div class="about-img"></div>
-          <div class="about-text">
-            <h2>Professional Dentist with Over 15 Years of Experience</h2>
-            <p>
-              Dr. Hussein Labib is a renowned dental specialist based in Dubai,
-              dedicated to providing exceptional dental care using the latest
-              technologies and techniques. With a gentle approach and attention
-              to detail, he ensures every patient receives personalized
-              treatment in a comfortable environment.
-            </p>
-
-            <div class="about-features">
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <i class="fas fa-award"></i>
-                </div>
-                <p>Internationally trained and certified</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <i class="fas fa-teeth"></i>
-                </div>
-                <p>Specialized in cosmetic and restorative dentistry</p>
-              </div>
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <i class="fas fa-hand-holding-heart"></i>
-                </div>
-                <p>Compassionate and patient-centered care</p>
-              </div>
+    <section id="about" class="section pattern-bg-1">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+                <h2>About Dr. Hussein Labib</h2>
+                <p>Meet the leading dental specialist in Dubai with over 15 years of experience in cosmetic and restorative dentistry.</p>
             </div>
-
-            <div class="timeline">
-              <div class="timeline-item">
-                <h3>Bachelor of Dental Surgery</h3>
-                <p>Cairo University, Egypt (2005)</p>
-              </div>
-              <div class="timeline-item">
-                <h3>Master's in Oral Surgery</h3>
-                <p>University of London, UK (2009)</p>
-              </div>
-              <div class="timeline-item">
-                <h3>Senior Dentist</h3>
-                <p>Dubai Dental Hospital (2010-2015)</p>
-              </div>
-              <div class="timeline-item">
-                <h3>Founder & Lead Dentist</h3>
-                <p>Dr. Hussein Labib Dental Clinic (2015-Present)</p>
-              </div>
+            <div class="about-content">
+                <div class="about-img" data-aos="fade-right" data-aos-duration="1000"></div>
+                <div class="about-text" data-aos="fade-left" data-aos-duration="1000">
+                    <h2>Your Trusted Dental Specialist</h2>
+                    <p>Dr. Hussein Labib is a renowned dental specialist based in Dubai, offering comprehensive dental care with a focus on patient comfort and the latest technological advancements.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <p>Board Certified Dental Surgeon</p>
+                        </div>
+                        <div class="feature-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                            <div class="feature-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <p>Multiple International Awards</p>
+                        </div>
+                        <div class="feature-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                            <div class="feature-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <p>Advanced Technology Approach</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                            <h3>Education & Training</h3>
+                            <p>Graduated with honors from Cairo University, completed advanced training in cosmetic dentistry in Switzerland.</p>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                            <h3>Experience</h3>
+                            <p>Over 15 years of experience in dental practice, with the last 8 years serving patients in Dubai.</p>
+                        </div>
+                        <div class="timeline-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">
+                            <h3>Specializations</h3>
+                            <p>Specialized in cosmetic dentistry, dental implants, and full mouth rehabilitation.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="section pattern-bg-2">
-      <div class="container">
-        <div class="section-title">
-          <h2>Our Services</h2>
-          <p>Comprehensive dental care for all your oral health needs</p>
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+                <h2>Our Services</h2>
+                <p>Comprehensive dental care for the whole family using the latest technology and techniques.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="service-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3>General Dentistry</h3>
+                    <p>Regular check-ups, cleanings, fillings, and preventive care to maintain your oral health.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-teeth"></i>
+                    </div>
+                    <h3>Cosmetic Dentistry</h3>
+                    <p>Teeth whitening, veneers, and smile makeovers to enhance your appearance and confidence.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="service-icon">
+                        <i class="fas fa-teeth-open"></i>
+                    </div>
+                    <h3>Orthodontics</h3>
+                    <p>Traditional braces and clear aligners to straighten teeth and correct bite issues.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                    <div class="service-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3>Dental Implants</h3>
+                    <p>Permanent tooth replacement solutions that look, feel, and function like natural teeth.</p>
+                </div>
+            </div>
         </div>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-tooth"></i>
-            </div>
-            <h3>Dental Implants</h3>
-            <p>
-              Permanent solution for missing teeth that look, feel, and function
-              like natural teeth.
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-teeth"></i>
-            </div>
-            <h3>Oral & Dental Surgery</h3>
-            <p>
-              Expert surgical procedures including wisdom teeth extraction and
-              corrective surgeries.
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-smile"></i>
-            </div>
-            <h3>Cosmetic Dentistry</h3>
-            <p>
-              Enhance your smile with veneers, teeth whitening, and other
-              cosmetic procedures.
-            </p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <i class="fas fa-teeth-open"></i>
-            </div>
-            <h3>Preventive Care</h3>
-            <p>
-              Regular check-ups, cleanings, and education to maintain optimal
-              oral health.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
-    <!-- Stacked Cards Section -->
-    <!-- Specialized Treatments Section - Redesigned -->
-    <section class="specialized-treatments pattern-bg-2">
-      <div class="treatments-container">
-        <div class="treatments-header">
-          <h2>Specialized Treatments</h2>
-          <p>
-            Advanced dental solutions tailored to your specific needs with
-            cutting-edge technology
-          </p>
+
+    <!-- Specialized Treatments Section -->
+    <section class="specialized-treatments pattern-bg-3">
+        <div class="treatments-container">
+            <div class="treatments-header" data-aos="fade-up" data-aos-duration="1000">
+                <h2>Specialized Treatments</h2>
+                <p>Advanced dental procedures tailored to your specific needs and goals.</p>
+            </div>
+            
+            <div class="treatments-grid">
+                <div class="treatment-card" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="treatment-img">
+                        <img src="https://images.unsplash.com/photo-1564422167507-6e63772a1543?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dental Implants">
+                        <div class="treatment-overlay">
+                            <div class="treatment-icon">
+                                <i class="fas fa-tooth"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>Dental Implants</h3>
+                        <p>Permanent solution for missing teeth that look and function like natural teeth.</p>
+                        <ul class="treatment-features">
+                            <li><i class="fas fa-check-circle"></i> High success rate</li>
+                            <li><i class="fas fa-check-circle"></i> Long-lasting results</li>
+                            <li><i class="fas fa-check-circle"></i> Prevents bone loss</li>
+                        </ul>
+                        <div class="treatment-cta">
+                            <a href="#contact" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="treatment-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="treatment-img">
+                        <img src="https://images.unsplash.com/photo-1606811971616-7a21c5d4d5b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Teeth Whitening">
+                        <div class="treatment-overlay">
+                            <div class="treatment-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>Teeth Whitening</h3>
+                        <p>Professional teeth whitening for a brighter, more confident smile.</p>
+                        <ul class="treatment-features">
+                            <li><i class="fas fa-check-circle"></i> Quick results</li>
+                            <li><i class="fas fa-check-circle"></i> Safe procedure</li>
+                            <li><i class="fas fa-check-circle"></i> Long-lasting effects</li>
+                        </ul>
+                        <div class="treatment-cta">
+                            <a href="#contact" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="treatment-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="treatment-img">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Invisalign">
+                        <div class="treatment-overlay">
+                            <div class="treatment-icon">
+                                <i class="fas fa-align-center"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="treatment-content">
+                        <h3>Invisalign</h3>
+                        <p>Clear aligners for straightening teeth without traditional braces.</p>
+                        <ul class="treatment-features">
+                            <li><i class="fas fa-check-circle"></i> Nearly invisible</li>
+                            <li><i class="fas fa-check-circle"></i> Removable</li>
+                            <li><i class="fas fa-check-circle"></i> Comfortable to wear</li>
+                        </ul>
+                        <div class="treatment-cta">
+                            <a href="#contact" class="btn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="treatments-grid">
-          <div class="treatment-card">
-            <div class="treatment-img">
-              <img
-                src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                alt="Teeth Whitening"
-              />
-              <div class="treatment-overlay">
-                <div class="treatment-icon">
-                  <i class="fas fa-tooth"></i>
-                </div>
-              </div>
-            </div>
-            <div class="treatment-content">
-              <h3>Teeth Whitening</h3>
-              <p>
-                Professional teeth whitening treatment that safely brightens
-                your smile by several shades in just one visit.
-              </p>
-              <ul class="treatment-features">
-                <li>
-                  <i class="fas fa-check-circle"></i> Quick and painless
-                  procedure
-                </li>
-                <li>
-                  <i class="fas fa-check-circle"></i> Long-lasting results
-                </li>
-                <li>
-                  <i class="fas fa-check-circle"></i> Customized treatment plans
-                </li>
-              </ul>
-              <div class="treatment-cta">
-                <a href="#contact" class="btn">Learn More</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="treatment-card">
-            <div class="treatment-img">
-              <img
-                src="https://www.smilestudiodental.in/wp-content/uploads/2020/08/Invisalign-Path-to-a-Confident-Smile-1.jpg"
-                alt="Invisalign"
-              />
-              <div class="treatment-overlay">
-                <div class="treatment-icon">
-                  <i class="fas fa-teeth"></i>
-                </div>
-              </div>
-            </div>
-            <div class="treatment-content">
-              <h3>Invisalign</h3>
-              <p>
-                Clear aligners that straighten your teeth without metal braces.
-                Nearly invisible and removable for easy cleaning.
-              </p>
-              <ul class="treatment-features">
-                <li><i class="fas fa-check-circle"></i> Virtually invisible</li>
-                <li><i class="fas fa-check-circle"></i> Comfortable to wear</li>
-                <li>
-                  <i class="fas fa-check-circle"></i> No food restrictions
-                </li>
-              </ul>
-              <div class="treatment-cta">
-                <a href="#contact" class="btn">Learn More</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="treatment-card">
-            <div class="treatment-img">
-              <img
-                src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                alt="Dental Crowns"
-              />
-              <div class="treatment-overlay">
-                <div class="treatment-icon">
-                  <i class="fas fa-crown"></i>
-                </div>
-              </div>
-            </div>
-            <div class="treatment-content">
-              <h3>Dental Crowns</h3>
-              <p>
-                Custom-made caps that restore damaged teeth to their natural
-                shape, size, and function while strengthening them.
-              </p>
-              <ul class="treatment-features">
-                <li><i class="fas fa-check-circle"></i> Natural appearance</li>
-                <li>
-                  <i class="fas fa-check-circle"></i> Durable and long-lasting
-                </li>
-                <li><i class="fas fa-check-circle"></i> Protects weak teeth</li>
-              </ul>
-              <div class="treatment-cta">
-                <a href="#contact" class="btn">Learn More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="section testimonials pattern-bg-3">
-      <div class="container">
-        <div class="section-title">
-          <h2>Patient Testimonials</h2>
-          <p>Hear what our patients have to say about their experience</p>
+    <section id="testimonials" class="section pattern-bg-1">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+                <h2>Patient Testimonials</h2>
+                <p>Hear what our patients have to say about their experience with our dental practice.</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-carousel">
+                    <div class="testimonial active">
+                        <div class="testimonial-text">
+                            <p>Dr. Labib transformed my smile with veneers. The entire process was comfortable, and the results exceeded my expectations. I couldn't be happier with my new smile!</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson">
+                            </div>
+                            <div class="testimonial-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Veneers Patient</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-text">
+                            <p>I had severe dental anxiety, but Dr. Labib and his team made me feel at ease. The sedation dentistry option allowed me to get the treatment I needed without fear.</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                            </div>
+                            <div class="testimonial-info">
+                                <h4>Michael Chen</h4>
+                                <p>Dental Implant Patient</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-text">
+                            <p>After years of hiding my smile, Invisalign with Dr. Labib gave me the confidence to smile openly. The treatment was discreet and effective. Highly recommend!</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Emma Rodriguez">
+                            </div>
+                            <div class="testimonial-info">
+                                <h4>Emma Rodriguez</h4>
+                                <p>Invisalign Patient</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <div class="carousel-btn prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="carousel-btn next">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="testimonials-container">
-          <div class="testimonial-carousel">
-            <div class="testimonial active">
-              <p class="testimonial-text">
-                "Dr. Labib transformed my smile with veneers. His attention to
-                detail and gentle approach made the entire process comfortable.
-                I couldn't be happier with the results!"
-              </p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">
-                  <img
-                    src="https://randomuser.me/api/portraits/women/65.jpg"
-                    alt="Sarah Johnson"
-                  />
-                </div>
-                <div class="testimonial-info">
-                  <h4>Sarah Johnson</h4>
-                  <p>Cosmetic Dentistry Patient</p>
-                  <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="testimonial">
-              <p class="testimonial-text">
-                "I had severe dental anxiety, but Dr. Labib and his team made me
-                feel at ease. My dental implants feel and look completely
-                natural. Highly recommended!"
-              </p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">
-                  <img
-                    src="https://randomuser.me/api/portraits/men/32.jpg"
-                    alt="Ahmed Mohammed"
-                  />
-                </div>
-                <div class="testimonial-info">
-                  <h4>Ahmed Mohammed</h4>
-                  <p>Dental Implants Patient</p>
-                  <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="testimonial">
-              <p class="testimonial-text">
-                "The preventive care program designed by Dr. Labib has helped me
-                maintain excellent oral health. The entire staff is professional
-                and caring."
-              </p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">
-                  <img
-                    src="https://randomuser.me/api/portraits/women/44.jpg"
-                    alt="Elena Rodriguez"
-                  />
-                </div>
-                <div class="testimonial-info">
-                  <h4>Elena Rodriguez</h4>
-                  <p>Preventive Care Patient</p>
-                  <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-nav">
-            <div class="carousel-btn prev">
-              <i class="fas fa-chevron-left"></i>
-            </div>
-            <div class="carousel-btn next">
-              <i class="fas fa-chevron-right"></i>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="section-title">
-          <h2>Contact Us</h2>
-          <p>Reach out to schedule your appointment or ask any questions</p>
+    <section id="contact" class="section pattern-bg-2">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="1000">
+                <h2>Contact Us</h2>
+                <p>Schedule your appointment or ask us any questions. We're here to help you achieve optimal dental health.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-form" data-aos="fade-right" data-aos-duration="1000">
+                    <form id="appointment-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Your Phone" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Select Service</option>
+                                <option value="general">General Dentistry</option>
+                                <option value="cosmetic">Cosmetic Dentistry</option>
+                                <option value="orthodontics">Orthodontics</option>
+                                <option value="implants">Dental Implants</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Book Appointment</button>
+                    </form>
+                </div>
+                <div class="map" data-aos="fade-left" data-aos-duration="1000">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.452666808387!2d55.27055931500873!3d25.18806798390426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43348a67e24b%3A0xff45e502e1ceb7e2!2sBurj%20Khalifa!5e0!3m2!1sen!2sae!4v1651234567890!5m2!1sen!2sae" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
         </div>
-        <div class="contact-container">
-          <div class="contact-form">
-            <form id="appointmentForm">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Your Name"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Your Email"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="tel"
-                  class="form-control"
-                  placeholder="Your Phone"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <select class="form-control" required>
-                  <option value="" disabled selected>Select Service</option>
-                  <option value="implant">Dental Implants</option>
-                  <option value="surgery">Oral Surgery</option>
-                  <option value="cosmetic">Cosmetic Dentistry</option>
-                  <option value="preventive">Preventive Care</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <textarea
-                  class="form-control"
-                  placeholder="Your Message"
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" class="btn">Send Message</button>
-            </form>
-          </div>
-          <div class="map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d462562.650954417!2d54.94755455!3d25.07575945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1689320659952!5m2!1sen!2s"
-              allowfullscreen=""
-              loading="lazy"
-            ></iframe>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="container footer-container">
-        <div class="footer-col">
-          <h3>Dr. Hussein Labib</h3>
-          <p>
-            Providing exceptional dental care in Dubai with a focus on patient
-            comfort and satisfaction.
-          </p>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3>Dr. Hussein Labib</h3>
+                <p>Providing exceptional dental care in Dubai with a focus on patient comfort and the latest technology.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> General Dentistry</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Cosmetic Dentistry</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Orthodontics</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Dental Implants</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Teeth Whitening</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Dental Street, Dubai, UAE</li>
+                    <li><i class="fas fa-phone"></i> +971 4 123 4567</li>
+                    <li><i class="fas fa-envelope"></i> info@drhusseinlabib.com</li>
+                    <li><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 7:00 PM</li>
+                </ul>
+            </div>
         </div>
-        <div class="footer-col">
-          <h3>Quick Links</h3>
-          <ul class="footer-links">
-            <li>
-              <a href="#home"><i class="fas fa-chevron-right"></i>Home</a>
-            </li>
-            <li>
-              <a href="#about"><i class="fas fa-chevron-right"></i>About</a>
-            </li>
-            <li>
-              <a href="#services"
-                ><i class="fas fa-chevron-right"></i>Services</a
-              >
-            </li>
-            <li>
-              <a href="#testimonials"
-                ><i class="fas fa-chevron-right"></i>Testimonials</a
-              >
-            </li>
-            <li>
-              <a href="#contact"><i class="fas fa-chevron-right"></i>Contact</a>
-            </li>
-          </ul>
+        <div class="copyright">
+            <p>&copy; 2023 Dr. Hussein Labib. All Rights Reserved.</p>
         </div>
-        <div class="footer-col">
-          <h3>Contact Info</h3>
-          <ul class="footer-links">
-            <li>
-              <i class="fas fa-map-marker-alt"></i> Dental Street, Dubai, UAE
-            </li>
-            <li><i class="fas fa-phone"></i> +971 4 123 4567</li>
-            <li><i class="fas fa-envelope"></i> info@drhusseinlabib.com</li>
-            <li><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 7:00 PM</li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Emergency Contact</h3>
-          <p>For dental emergencies outside office hours, please call:</p>
-          <p class="emergency-number">
-            <i class="fas fa-phone-alt"></i> +971 50 123 4567
-          </p>
-          <p>Available 24/7 for urgent dental issues</p>
-        </div>
-      </div>
-      <div class="copyright">
-        <p>&copy; 2023 Dr. Hussein Labib Dental Clinic. All rights reserved.</p>
-      </div>
     </footer>
 
     <!-- Scroll to Top Button -->
     <div class="scroll-top">
-      <i class="fas fa-arrow-up"></i>
+        <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Add AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Mobile Menu Toggle
-        const hamburger = document.querySelector(".hamburger");
-        const navMenu = document.querySelector(".nav-menu");
-
-        hamburger.addEventListener("click", function () {
-          navMenu.classList.toggle("active");
-          hamburger.classList.toggle("fa-bars");
-          hamburger.classList.toggle("fa-times");
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
         });
 
-        // Close mobile menu when clicking on a nav link
-        document.querySelectorAll(".nav-link").forEach((link) => {
-          link.addEventListener("click", () => {
-            navMenu.classList.remove("active");
-            hamburger.classList.add("fa-bars");
-            hamburger.classList.remove("fa-times");
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(function() {
+                preloader.style.opacity = '0';
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 1500); // Adjust time as needed
+        });
 
-            // Update active nav link
-            document.querySelectorAll(".nav-link").forEach((item) => {
-              item.classList.remove("active");
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
             });
-            link.classList.add("active");
-          });
         });
 
-        // Sticky Navbar
-        const navbar = document.querySelector(".navbar");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 100) {
-            navbar.classList.add("scrolled");
-          } else {
-            navbar.classList.remove("scrolled");
-          }
+        // Scroll to top button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
 
-        // Hero Slideshow
-        const slides = document.querySelectorAll(".slide");
+        // Hero slideshow
+        const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
 
-        function showSlide(index) {
-          slides.forEach((slide) => slide.classList.remove("active"));
-          slides[index].classList.add("active");
-        }
-
         function nextSlide() {
-          currentSlide = (currentSlide + 1) % slides.length;
-          showSlide(currentSlide);
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
         }
 
-        // Change slide every 5 seconds
-        setInterval(nextSlide, 5000);
+        setInterval(nextSlide, 5000); // Change slide every 5 seconds
 
-        // Animated Stats Counter
-        const statNumbers = document.querySelectorAll(".stat-number");
-        let counted = false;
-
-        function countStats() {
-          const statsSection = document.querySelector(".stats");
-          const statsSectionTop = statsSection.offsetTop;
-          const statsSectionHeight = statsSection.offsetHeight;
-
-          if (
-            window.scrollY >
-              statsSectionTop - window.innerHeight + statsSectionHeight / 2 &&
-            !counted
-          ) {
-            statNumbers.forEach((stat) => {
-              const target = parseInt(stat.getAttribute("data-count"));
-              const duration = 2000; // in milliseconds
-              const increment = target / (duration / 16); // 16ms per frame (approx 60fps)
-              let current = 0;
-
-              const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                  clearInterval(timer);
-                  current = target;
-                }
-                stat.textContent = Math.round(current);
-              }, 16);
-            });
-            counted = true;
-          }
-        }
-
-        window.addEventListener("scroll", countStats);
-
-        // Stacked Cards Navigation
-        const stackedCards = document.querySelectorAll(".stacked-card");
-        const stackedDots = document.querySelectorAll(".stacked-dot");
-
-        stackedDots.forEach((dot) => {
-          dot.addEventListener("click", function () {
-            const index = this.getAttribute("data-index");
-
-            // Remove active class from all cards and dots
-            stackedCards.forEach((card) => card.classList.remove("active"));
-            stackedDots.forEach((dot) => dot.classList.remove("active"));
-
-            // Add active class to current card and dot
-            stackedCards[index].classList.add("active");
-            this.classList.add("active");
-          });
-        });
-
-        // Auto rotate stacked cards
-        let currentCard = 0;
-        function rotateCards() {
-          currentCard = (currentCard + 1) % stackedCards.length;
-
-          stackedCards.forEach((card) => card.classList.remove("active"));
-          stackedDots.forEach((dot) => dot.classList.remove("active"));
-
-          stackedCards[currentCard].classList.add("active");
-          stackedDots[currentCard].classList.add("active");
-        }
-
-        setInterval(rotateCards, 4000);
-
-        // Testimonial Carousel
-        const testimonials = document.querySelectorAll(".testimonial");
-        const prevBtn = document.querySelector(".carousel-btn.prev");
-        const nextBtn = document.querySelector(".carousel-btn.next");
+        // Testimonial carousel
+        const testimonials = document.querySelectorAll('.testimonial');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
         let currentTestimonial = 0;
 
         function showTestimonial(index) {
-          testimonials.forEach((testimonial) =>
-            testimonial.classList.remove("active")
-          );
-          testimonials[index].classList.add("active");
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            testimonials[index].classList.add('active');
         }
 
-        prevBtn.addEventListener("click", function () {
-          currentTestimonial--;
-          if (currentTestimonial < 0) {
-            currentTestimonial = testimonials.length - 1;
-          }
-          showTestimonial(currentTestimonial);
+        prevBtn.addEventListener('click', function() {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(currentTestimonial);
         });
 
-        nextBtn.addEventListener("click", function () {
-          currentTestimonial++;
-          if (currentTestimonial >= testimonials.length) {
-            currentTestimonial = 0;
-          }
-          showTestimonial(currentTestimonial);
+        nextBtn.addEventListener('click', function() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
         });
 
-        // Auto rotate testimonials
-        setInterval(() => {
-          currentTestimonial++;
-          if (currentTestimonial >= testimonials.length) {
-            currentTestimonial = 0;
-          }
-          showTestimonial(currentTestimonial);
-        }, 6000);
+        // Animated counter for stats
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
 
-        // Scroll to Top Button
-        const scrollButton = document.querySelector(".scroll-top");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 500) {
-            scrollButton.classList.add("active");
-          } else {
-            scrollButton.classList.remove("active");
-          }
-        });
+        function animateCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = Math.ceil(target / speed);
+                
+                if (count < target) {
+                    counter.innerText = Math.min(count + increment, target);
+                    setTimeout(() => animateCounters(), 1);
+                }
+            });
+        }
 
-        scrollButton.addEventListener("click", function () {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        });
+        // Start counter animation when stats section is in view
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
 
-        // Form Submission
-        const form = document.getElementById("appointmentForm");
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert(
-            "Thank you for your appointment request. We will contact you shortly to confirm your booking."
-          );
-          form.reset();
-        });
-
-        // Animate elements on scroll
-        const animateOnScroll = function () {
-          const elements = document.querySelectorAll(
-            ".service-card, .about-img, .about-text, .contact-form, .map, .stat-item, .stacked-card"
-          );
-
-          elements.forEach((element) => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
-
-            if (elementPosition < screenPosition) {
-              element.style.opacity = 1;
-              element.style.transform = "translateY(0)";
-            }
-          });
-        };
-
-        // Set initial state for animation
-        document
-          .querySelectorAll(
-            ".service-card, .about-img, .about-text, .contact-form, .map, .stat-item, .stacked-card"
-          )
-          .forEach((element) => {
-            element.style.opacity = 0;
-            element.style.transform = "translateY(30px)";
-            element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
-          });
-
-        window.addEventListener("scroll", animateOnScroll);
-        // Trigger once on load
-        animateOnScroll();
-      });
+        observer.observe(document.querySelector('.stats'));
     </script>
-  </body>
+</body>
 </html>
